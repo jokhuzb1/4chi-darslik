@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Testi</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f3f4f6;
+      }
+      .container {
+        max-width: 800px;
+      }
+      .question-card {
+        background-color: #ffffff;
+        border-left: 4px solid #6366f1;
+        transition: all 0.3s ease;
+      }
+      .question-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+      .option-label {
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        background-color: #f9fafb;
+        border: 1px solid #e5e7eb;
+      }
+      .option-label:hover {
+        background-color: #f1f5f9;
+      }
+      input[type="radio"]:checked + .option-label {
+        background-color: #6366f1;
+        color: #ffffff;
+        border-color: #6366f1;
+      }
+      .submit-btn {
+        background-color: #4f46e5;
+        transition: all 0.2s ease-in-out;
+      }
+      .submit-btn:hover {
+        background-color: #4338ca;
+        transform: scale(1.02);
+      }
+      .result-box {
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body class="p-6 md:p-10">
+    <div class="container mx-auto p-8 bg-white rounded-xl shadow-2xl">
+      <header class="text-center mb-10">
+        <h1 class="text-4xl font-bold text-gray-900 mb-2">HTML Testi</h1>
+        <p class="text-lg text-gray-600">
+          HTML teglari va tushunchalari bo'yicha bilimlaringizni sinab ko'ring!
+        </p>
+      </header>
+
+      <div id="quiz-container">
+        <div
+          id="name-input-section"
+          class="mb-8 p-6 bg-gray-50 rounded-lg shadow-inner"
+        >
+          <label
+            for="student-name"
+            class="block text-xl font-medium text-gray-700 mb-2"
+          >
+            Ismingizni kiriting:
+          </label>
+          <input
+            type="text"
+            id="student-name"
+            class="w-full p-3 rounded-lg border-2 border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-lg"
+            placeholder="masalan, John Doe"
+            required
+          />
+        </div>
+
+        <div id="quiz-questions" class="space-y-8">
+          <!-- Savollar bu yerda dinamik tarzda kiritiladi -->
+        </div>
+
+        <button
+          id="submit-button"
+          class="submit-btn w-full mt-12 py-4 px-6 text-xl font-bold text-white rounded-lg shadow-lg"
+        >
+          Testni topshirish
+        </button>
+      </div>
+
+      <div id="result-box" class="hidden mt-12 result-box">
+        <!-- Natijalar bu yerda ko'rsatiladi -->
+      </div>
+    </div>
+
+    <script>
+      // HTML bo'yicha 20 ta savoldan iborat massiv
+      const quizQuestions = [
+        {
+          question: "Eng katta sarlavha uchun qaysi HTML tegi ishlatiladi?",
+          options: ["<h1>", "<h6>", "<head>", "<title>"],
+          correct: "<h1>",
+        },
+        {
+          question:
+            "Rasm uchun muqobil matn berish uchun qaysi atribut ishlatiladi?",
+          options: ["alt", "src", "title", "href"],
+          correct: "alt",
+        },
+        {
+          question: "HTML nimani anglatadi?",
+          options: [
+            "Hyper Text Markup Language",
+            "Yuqori darajadagi matnni boshqarish tili",
+            "Uy asboblari belgilash tili",
+            "Giperhavola va matnni belgilash tili",
+          ],
+          correct: "Hyper Text Markup Language",
+        },
+        {
+          question:
+            "Tartiblangan ro'yxatni belgilash uchun qaysi teg ishlatiladi?",
+          options: ["<ul>", "<ol>", "<li>", "<dl>"],
+          correct: "<ol>",
+        },
+        {
+          question: "Giperhavola yaratish uchun qaysi teg ishlatiladi?",
+          options: ["<a>", "<link>", "<href>", "<hlink>"],
+          correct: "<a>",
+        },
+        {
+          question: "Yangi qator qo'shish uchun to'g'ri HTML qaysi?",
+          options: ["<lb>", "<br>", "<break>", "<newline>"],
+          correct: "<br>",
+        },
+        {
+          question: "Quyidagilardan qaysi biri semantik HTML5 tegi?",
+          options: ["<div>", "<span>", "<header>", "<i>"],
+          correct: "<header>",
+        },
+        {
+          question: "`<head>` tegi hujjatning nimasi uchun ishlatiladi?",
+          options: [
+            "tanasi tarkibi",
+            "asosiy qism",
+            "meta ma'lumotlari",
+            "pastki qism",
+          ],
+          correct: "meta ma'lumotlari",
+        },
+        {
+          question:
+            "Inline CSS da fon rangini qo'shishning to'g'ri usuli qaysi?",
+          options: [
+            "<body bgcolor='yellow'>",
+            "<body style='background-color: yellow;'>",
+            "<background>yellow</background>",
+            "background-color: yellow;",
+          ],
+          correct: "<body style='background-color: yellow;'>",
+        },
+        {
+          question: "Qaysi atribut HTML elementiga unikal ID belgilaydi?",
+          options: ["class", "name", "id", "style"],
+          correct: "id",
+        },
+        {
+          question: "Jadval qatorini belgilash uchun qaysi teg ishlatiladi?",
+          options: ["<td>", "<th>", "<tr>", "<table>"],
+          correct: "<tr>",
+        },
+        {
+          question:
+            "`<b>` tegi matnni qalin qiladi. Kuchli ahamiyatni belgilash uchun qaysi teg ishlatilishi kerak?",
+          options: ["<i>", "<strong>", "<em>", "<mark>"],
+          correct: "<strong>",
+        },
+        {
+          question:
+            "Tartiblanmagan ro'yxatni belgilash uchun qaysi teg ishlatiladi?",
+          options: ["<ul>", "<ol>", "<li>", "<list>"],
+          correct: "<ul>",
+        },
+        {
+          question: "`<img>` tegi nimani ko'rsatish uchun ishlatiladi?",
+          options: ["Matn", "Video", "Rasm", "Ovoz"],
+          correct: "Rasm",
+        },
+        {
+          question: "`<form>` tegi nima uchun ishlatiladi?",
+          options: [
+            "Yangi sahifani belgilash",
+            "Navigatsiya paneli yaratish",
+            "Foydalanuvchi ma'lumotlarini yig'ish",
+            "Pastki qismni belgilash",
+          ],
+          correct: "Foydalanuvchi ma'lumotlarini yig'ish",
+        },
+        {
+          question: "`<meta>` tegining maqsadi nima?",
+          options: [
+            "Yangi xat boshini belgilash",
+            "Sahifa meta ma'lumotlarini taqdim etish",
+            "Tugma yaratish",
+            "CSS faylini ulash",
+          ],
+          correct: "Sahifa meta ma'lumotlarini taqdim etish",
+        },
+        {
+          question: "Ro'yxat elementini belgilash uchun qaysi teg ishlatiladi?",
+          options: ["<li>", "<item>", "<list>", "<ul>"],
+          correct: "<li>",
+        },
+        {
+          question: "Belgilash katakchasini yaratish uchun to'g'ri HTML qaysi?",
+          options: [
+            "<input type='radio'>",
+            "<input type='checkbox'>",
+            "<check>",
+            "<input type='select'>",
+          ],
+          correct: "<input type='checkbox'>",
+        },
+        {
+          question: "HTML da sharh qo'shish uchun qaysi teg ishlatiladi?",
+          options: [
+            "<!-- comment -->",
+            "<// comment //>",
+            "// comment",
+            "/* comment */",
+          ],
+          correct: "<!-- comment -->",
+        },
+        {
+          question: "`<a>` tegining `href` atributi nimani anglatadi?",
+          options: [
+            "Giperhavola",
+            "Sarlavha havolasi",
+            "HTML havolasi",
+            "Gipermatn havolasi",
+          ],
+          correct: "Gipermatn havolasi",
+        },
+      ];
+
+      // Get references to DOM elements
+      const quizQuestionsEl = document.getElementById("quiz-questions");
+      const submitButton = document.getElementById("submit-button");
+      const resultBox = document.getElementById("result-box");
+      const nameInput = document.getElementById("student-name");
+
+      // Function to render questions using a more reliable method
+      function renderQuestions() {
+        quizQuestions.forEach((q, index) => {
+          // Create the question card container
+          const questionCard = document.createElement("div");
+          questionCard.className = "question-card p-6 rounded-lg shadow-md";
+
+          // Create the question text
+          const questionText = document.createElement("p");
+          questionText.className = "text-xl font-semibold text-gray-800 mb-4";
+          questionText.textContent = `${index + 1}. ${q.question}`;
+          questionCard.appendChild(questionText);
+
+          // Create the options container
+          const optionsContainer = document.createElement("div");
+          optionsContainer.className = "options-container space-y-3";
+          questionCard.appendChild(optionsContainer);
+
+          // Loop through options and create radio buttons and labels
+          q.options.forEach((option) => {
+            const optionWrapper = document.createElement("div");
+            optionWrapper.className = "relative";
+
+            const radioInput = document.createElement("input");
+            radioInput.type = "radio";
+            radioInput.id = `q${index}-opt-${option}`;
+            radioInput.name = `question-${index}`;
+            radioInput.value = option;
+            radioInput.className = "hidden";
+
+            const label = document.createElement("label");
+            label.htmlFor = `q${index}-opt-${option}`;
+            label.className =
+              "option-label block w-full p-3 rounded-lg transition-colors duration-200";
+            label.textContent = option;
+
+            optionWrapper.appendChild(radioInput);
+            optionWrapper.appendChild(label);
+            optionsContainer.appendChild(optionWrapper);
+          });
+
+          quizQuestionsEl.appendChild(questionCard);
+        });
+      }
+
+      // Function to handle quiz submission
+      async function submitQuiz() {
+        const studentName = nameInput.value.trim();
+        if (!studentName) {
+          // Using a custom modal instead of alert()
+          showModal("Testni topshirish uchun ismingizni kiriting.");
+          return;
+        }
+
+        let score = 0;
+        const quizResults = [];
+        const form = document.querySelector("#quiz-container");
+
+        // Iterate through each question to check the answer
+        quizQuestions.forEach((q, index) => {
+          const selectedOption = form.querySelector(
+            `input[name="question-${index}"]:checked`
+          );
+          const userAnswer = selectedOption
+            ? selectedOption.value
+            : "Javob berilmadi";
+          const isCorrect = userAnswer === q.correct;
+
+          if (isCorrect) {
+            score++;
+          }
+
+          // Store full result for sending
+          quizResults.push({
+            question: q.question,
+            userAnswer: userAnswer,
+            correctAnswer: q.correct,
+            isCorrect: isCorrect,
+          });
+        });
+
+        // Display results
+        displayResults(score, quizResults);
+
+        // Send results to Telegram
+        sendToTelegram(studentName, score, quizResults);
+
+        submitButton.disabled = true;
+        submitButton.classList.add("opacity-50", "cursor-not-allowed");
+      }
+
+      // Function to send quiz results to a Telegram group
+      async function sendToTelegram(studentName, score, quizResults) {
+        // !!! MUHIM: Bu yerga o'zingizning bot tokeningizni kiriting !!!
+        const botToken = "8124043762:AAF9nH3ng-EuUomxX_pLD5Pj6rdIlAzkeQY";
+        // !!! MUHIM: Bu yerga guruhning ID'sini kiriting (u minus bilan boshlanishi mumkin) !!!
+        // Yoki `@Ittechnova` kabi guruh foydalanuvchi nomini kiriting
+        const chatId = "YOUR_TELEGRAM_GROUP_ID_OR_USERNAME";
+
+        // Xabarni o'zbek tilida tayyorlash
+        let messageText = `<b>Yangi test natijasi!</b>\n\n`;
+        messageText += `<b>Ism:</b> ${studentName}\n`;
+        messageText += `<b>Jami savollar:</b> ${quizQuestions.length}\n`;
+        messageText += `<b>To'g'ri javoblar:</b> ${score}\n`;
+        const percentage = ((score / quizQuestions.length) * 100).toFixed(2);
+        messageText += `<b>Foiz:</b> ${percentage}%\n\n`;
+
+        messageText += `<b>Savollar bo'yicha ma'lumot:</b>\n`;
+        quizResults.forEach((r, index) => {
+          const statusIcon = r.isCorrect ? "✅" : "❌";
+          messageText += `${index + 1}. ${r.question}\n`;
+          messageText += `   Sizning javobingiz: ${r.userAnswer} ${statusIcon}\n`;
+          messageText += `   To'g'ri javob: ${r.correctAnswer}\n\n`;
+        });
+
+        const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+        const payload = {
+          chat_id: chatId,
+          text: messageText,
+          parse_mode: "HTML",
+        };
+
+        try {
+          // Bu fetch call'ni ishlatish uchun yuqoridagi joy tutuvchilarni
+          // o'zgartirishingiz kerak.
+          const response = await fetch(telegramApiUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+
+          if (response.ok) {
+            showModal("Natijalar Telegram guruhiga muvaffaqiyatli yuborildi!");
+          } else {
+            const errorData = await response.json();
+            console.error("Telegramga yuborishda xatolik:", errorData);
+            showModal(
+              `Natijalarni yuborishda xatolik yuz berdi. Iltimos, Bot Token va Chat ID'ni tekshiring. Xato: ${errorData.description}`
+            );
+          }
+        } catch (error) {
+          console.error("Telegram APIga murojaat qilishda xatolik:", error);
+          showModal(
+            "Internetga ulanishda xatolik yuz berdi yoki serverda muammo bor."
+          );
+        }
+      }
+
+      // Function to display the results in the UI
+      function displayResults(score, results) {
+        let resultHtml = `
+                <div class="p-8 bg-green-50 border-l-4 border-green-500 rounded-lg shadow-xl">
+                    <h2 class="text-3xl font-bold text-green-800 mb-2">Test yakunlandi!</h2>
+                    <p class="text-xl text-green-700">Talaba: <span class="font-bold">${nameInput.value}</span></p>
+                    <p class="text-xl text-green-700">Sizning yakuniy natijangiz: <span class="font-bold text-green-900">${score}</span>/${quizQuestions.length}</p>
+                </div>
+                <div class="mt-8 space-y-6">
+            `;
+
+        results.forEach((r, index) => {
+          const statusColor = r.isCorrect ? "text-green-600" : "text-red-600";
+          const statusIcon = r.isCorrect ? "✅" : "❌";
+          const cardColor = r.isCorrect ? "bg-green-50" : "bg-red-50";
+
+          resultHtml += `
+                    <div class="p-6 rounded-lg shadow-md border ${cardColor}">
+                        <p class="text-lg font-bold text-gray-800 mb-2">Savol ${
+                          index + 1
+                        }: ${r.question}</p>
+                        <p class="text-base ${statusColor}">Sizning javobingiz: ${
+            r.userAnswer
+          } ${statusIcon}</p>
+                        <p class="text-base text-gray-700">To'g'ri javob: <span class="font-bold">${
+                          r.correctAnswer
+                        }</span></p>
+                    </div>
+                `;
+        });
+
+        resultHtml += `</div>`;
+        resultBox.innerHTML = resultHtml;
+        resultBox.classList.remove("hidden");
+      }
+
+      // Function to show a custom modal for alerts
+      function showModal(message) {
+        const modalHtml = `
+                <div id="custom-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 flex items-center justify-center">
+                    <div class="relative p-8 bg-white w-96 mx-auto rounded-xl shadow-lg">
+                        <div class="text-center">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Test ogohlantirishi</h3>
+                            <p class="text-lg text-gray-700 mb-6">${message}</p>
+                            <button onclick="closeModal()" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition-colors duration-200">
+                                OK
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        document.body.insertAdjacentHTML("beforeend", modalHtml);
+      }
+
+      // Function to close the custom modal
+      function closeModal() {
+        const modal = document.getElementById("custom-modal");
+        if (modal) {
+          modal.remove();
+        }
+      }
+
+      // Initial setup
+      document.addEventListener("DOMContentLoaded", () => {
+        renderQuestions();
+        submitButton.addEventListener("click", submitQuiz);
+      });
+    </script>
+  </body>
+</html>
