@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="ecom.css" />
+    <title>ShopClass — Minimal E‑Commerce Template</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container nav">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <span>ShopClass</span>
+        </div>
+
+        <label
+          for="menu-toggle"
+          class="hamburger"
+          title="Open menu"
+          aria-label="Open menu"
+          >☰</label
+        >
+        <input id="menu-toggle" type="checkbox" />
+
+        <nav class="navlinks" aria-label="Primary">
+          <a href="#">Home</a>
+          <a href="#">Women</a>
+          <a href="#">Men</a>
+          <a href="#">Electronics</a>
+          <a href="#">Home</a>
+          <a href="#">Sale</a>
+          <a href="#">Contact</a>
+        </nav>
+
+        <div class="search">
+          <input
+            type="search"
+            placeholder="Search products…"
+            aria-label="Search"
+          />
+          <div class="icons">
+            <a class="iconbtn" href="#" title="Wishlist" aria-label="Wishlist"
+              >♡</a
+            >
+            <a class="iconbtn" href="#" title="Cart" aria-label="Cart">🛒</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Hero -->
+      <section class="hero" aria-label="Featured">
+        <div class="hero-inner">
+          <div>
+            <h1>Back‑to‑School Essentials</h1>
+            <p>
+              Save up to 40% on backpacks, laptops, and everyday tech. Free
+              shipping on orders over $50.
+            </p>
+            <div class="cta">
+              <a class="btn primary" href="#products">Shop Deals</a>
+              <a class="btn ghost" href="#new">Explore New Arrivals</a>
+            </div>
+            <div class="chips">
+              <a class="chip" href="#">#Backpacks</a>
+              <a class="chip" href="#">#Headphones</a>
+              <a class="chip" href="#">#Sneakers</a>
+              <a class="chip" href="#">#Smartwatch</a>
+              <a class="chip" href="#">#Stationery</a>
+            </div>
+          </div>
+          <img
+            src="https://images.unsplash.com/photo-1504274066651-8d31a536b11a?q=80&w=1200&auto=format&fit=crop"
+            alt="Assorted lifestyle products"
+          />
+        </div>
+      </section>
+
+      <!-- Toolbar -->
+      <section class="toolbar" id="products">
+        <div class="filters">
+          <span class="filter">Price: $10 — $500</span>
+          <span class="filter">Brand: Any</span>
+          <span class="filter">Rating: 4★ & up</span>
+        </div>
+        <div class="select" aria-label="Sort products">
+          <select>
+            <option>Sort: Featured</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Newest</option>
+            <option>Best Rated</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Product Grid -->
+      <section class="grid" aria-label="Product list">
+        <!-- Product Card Template (duplicate for more items) -->
+        <article class="card">
+          <a class="thumb" href="#">
+            <img
+              src="https://picsum.photos/seed/pack1/800/600"
+              alt="Canvas Backpack"
+            />
+          </a>
+          <div class="card-body">
+            <a class="title" href="#">Canvas Backpack</a>
+            <span class="muted">Sandstone • 20L</span>
+            <div class="stars" aria-label="Rated 4.5 out of 5">★ ★ ★ ★ ☆</div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.4rem;
+              "
+            >
+              <span class="price">$59.00</span>
+              <a class="btn block" href="#">Add to cart</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="#"
+            ><img
+              src="https://picsum.photos/seed/headphone/800/600"
+              alt="Wireless Headphones"
+          /></a>
+          <div class="card-body">
+            <a class="title" href="#">Wireless Headphones</a>
+            <span class="muted">Bluetooth 5.3</span>
+            <div class="stars">★ ★ ★ ★ ☆</div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.4rem;
+              "
+            >
+              <span class="price">$129.00</span>
+              <a class="btn block" href="#">Add to cart</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="#"
+            ><img
+              src="https://picsum.photos/seed/shoes/800/600"
+              alt="Running Shoes"
+          /></a>
+          <div class="card-body">
+            <a class="title" href="#">Running Shoes</a>
+            <span class="muted">Breathable Mesh</span>
+            <div class="stars">★ ★ ★ ★ ★</div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.4rem;
+              "
+            >
+              <span class="price">$89.00</span>
+              <a class="btn block" href="#">Add to cart</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="#"
+            ><img
+              src="https://picsum.photos/seed/watch/800/600"
+              alt="Smartwatch"
+          /></a>
+          <div class="card-body">
+            <a class="title" href="#">Smartwatch</a>
+            <span class="muted">24‑hr Battery</span>
+            <div class="stars">★ ★ ★ ★ ☆</div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.4rem;
+              "
+            >
+              <span class="price">$149.00</span>
+              <a class="btn block" href="#">Add to cart</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="#"
+            ><img
+              src="https://picsum.photos/seed/bottle/800/600"
+              alt="Insulated Bottle"
+          /></a>
+          <div class="card-body">
+            <a class="title" href="#">Insulated Bottle</a>
+            <span class="muted">Keeps cold 24h</span>
+            <div class="stars">★ ★ ★ ★ ☆</div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.4rem;
+              "
+            >
+              <span class="price">$25.00</span>
+              <a class="btn block" href="#">Add to cart</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="#"
+            ><img
+              src="https://picsum.photos/seed/jacket/800/600"
+              alt="Windbreaker Jacket"
+          /></a>
+          <div class="card-body">
+            <a class="title" href="#">Windbreaker Jacket</a>
+            <span class="muted">Light • Packable</span>
+            <div class="stars">★ ★ ★ ★ ☆</div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.4rem;
+              "
+            >
+              <span class="price">$69.00</span>
+              <a class="btn block" href="#">Add to cart</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="#"
+            ><img
+              src="https://picsum.photos/seed/desk/800/600"
+              alt="Minimal Desk Lamp"
+          /></a>
+          <div class="card-body">
+            <a class="title" href="#">Minimal Desk Lamp</a>
+            <span class="muted">LED • Dimmable</span>
+            <div class="stars">★ ★ ★ ★ ☆</div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.4rem;
+              "
+            >
+              <span class="price">$45.00</span>
+              <a class="btn block" href="#">Add to cart</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="#"
+            ><img
+              src="https://picsum.photos/seed/camera/800/600"
+              alt="Compact Camera"
+          /></a>
+          <div class="card-body">
+            <a class="title" href="#">Compact Camera</a>
+            <span class="muted">4K Video</span>
+            <div class="stars">★ ★ ★ ☆ ☆</div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.4rem;
+              "
+            >
+              <span class="price">$299.00</span>
+              <a class="btn block" href="#">Add to cart</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="#"
+            ><img
+              src="https://picsum.photos/seed/mug/800/600"
+              alt="Ceramic Mug"
+          /></a>
+          <div class="card-body">
+            <a class="title" href="#">Ceramic Mug</a>
+            <span class="muted">Matte Finish</span>
+            <div class="stars">★ ★ ★ ★ ☆</div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.4rem;
+              "
+            >
+              <span class="price">$15.00</span>
+              <a class="btn block" href="#">Add to cart</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="#"
+            ><img
+              src="https://picsum.photos/seed/hoodie/800/600"
+              alt="Cozy Hoodie"
+          /></a>
+          <div class="card-body">
+            <a class="title" href="#">Cozy Hoodie</a>
+            <span class="muted">Fleece • Unisex</span>
+            <div class="stars">★ ★ ★ ★ ★</div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.4rem;
+              "
+            >
+              <span class="price">$54.00</span>
+              <a class="btn block" href="#">Add to cart</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="#"
+            ><img
+              src="https://picsum.photos/seed/sunglasses/800/600"
+              alt="Sunglasses"
+          /></a>
+          <div class="card-body">
+            <a class="title" href="#">Sunglasses</a>
+            <span class="muted">UV400 • Polarized</span>
+            <div class="stars">★ ★ ★ ★ ☆</div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.4rem;
+              "
+            >
+              <span class="price">$39.00</span>
+              <a class="btn block" href="#">Add to cart</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="#"
+            ><img
+              src="https://picsum.photos/seed/keyboard/800/600"
+              alt="Mechanical Keyboard"
+          /></a>
+          <div class="card-body">
+            <a class="title" href="#">Mechanical Keyboard</a>
+            <span class="muted">Hot‑swappable</span>
+            <div class="stars">★ ★ ★ ★ ★</div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.4rem;
+              "
+            >
+              <span class="price">$109.00</span>
+              <a class="btn block" href="#">Add to cart</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="thumb" href="#"
+            ><img src="https://picsum.photos/seed/bag/800/600" alt="Tote Bag"
+          /></a>
+          <div class="card-body">
+            <a class="title" href="#">Tote Bag</a>
+            <span class="muted">Organic Cotton</span>
+            <div class="stars">★ ★ ★ ☆ ☆</div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.4rem;
+              "
+            >
+              <span class="price">$19.00</span>
+              <a class="btn block" href="#">Add to cart</a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Newsletter -->
+      <section id="new" style="margin: 2rem 0">
+        <div
+          class="hero-inner"
+          style="grid-template-columns: 1fr; text-align: center"
+        >
+          <h2 style="margin: 0 0 0.4rem">Get 10% off your first order</h2>
+          <p class="muted" style="margin: 0 0 1rem">
+            Join our newsletter for exclusive offers and updates.
+          </p>
+          <form
+            style="
+              display: flex;
+              gap: 0.6rem;
+              justify-content: center;
+              flex-wrap: wrap;
+            "
+          >
+            <input
+              type="email"
+              placeholder="you@example.com"
+              aria-label="Email"
+              style="
+                padding: 0.8rem 1rem;
+                border-radius: 0.8rem;
+                border: 1px solid #e5e7eb;
+                background: #fff;
+                min-width: 260px;
+              "
+            />
+            <button class="btn primary" type="button">Subscribe</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="container">
+      <div class="foot">
+        <div>
+          <div class="brand">
+            <div class="logo"></div>
+            <span>ShopClass</span>
+          </div>
+          <p class="muted">
+            A clean, responsive e‑commerce starter built with just HTML & CSS —
+            perfect for students.
+          </p>
+        </div>
+        <div>
+          <h4>Shop</h4>
+          <a href="#">Women</a>
+          <a href="#">Men</a>
+          <a href="#">Electronics</a>
+          <a href="#">Home</a>
+        </div>
+        <div>
+          <h4>Support</h4>
+          <a href="#">Help Center</a>
+          <a href="#">Shipping</a>
+          <a href="#">Returns</a>
+          <a href="#">Warranty</a>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Careers</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+      <p class="copyright">© 2025 ShopClass. For educational use.</p>
+    </footer>
+  </body>
+</html>
